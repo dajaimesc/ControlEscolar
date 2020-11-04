@@ -16,6 +16,7 @@ import domain.AlumnoEntidad;
 public interface IAlumnoAdministrar {
     
     void seleccionarAlumnno(AlumnoEntidad alumno);
+    void buscarAlumnno(AlumnoEntidad alumno);
     void agregarAlumno(AlumnoEntidad alumno);
     void eliminarAlumno(AlumnoEntidad alumno);
     void actualizarAlumno(AlumnoEntidad alumno);

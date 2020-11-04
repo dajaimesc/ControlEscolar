@@ -15,7 +15,7 @@ public class AlumnoEntidad {
     // Atributos de la tabla alumnos
     private int id;
     private int activo;
-    private float promedio;
+    private double promedio;
     private String nombre;
     private String paterno;
     private String materno;
@@ -28,7 +28,7 @@ public class AlumnoEntidad {
     }
 
     // Constructor con todos los campos
-    public AlumnoEntidad(int id, int activo, float promedio, String nombre, String paterno, String materno, String matricula, String correo, String sexo) {
+    public AlumnoEntidad(int id, int activo, double promedio, String nombre, String paterno, String materno, String matricula, String correo, String sexo) {
         this.id = id;
         this.activo = activo;
         this.promedio = promedio;
@@ -41,7 +41,7 @@ public class AlumnoEntidad {
     }
 
     // Constructor para INSERT
-    public AlumnoEntidad(int activo, float promedio, String nombre, String paterno, String materno, String matricula, String correo, String sexo) {
+    public AlumnoEntidad(int activo, double promedio, String nombre, String paterno, String materno, String matricula, String correo, String sexo) {
         this.activo = activo;
         this.promedio = promedio;
         this.nombre = nombre;
@@ -52,7 +52,7 @@ public class AlumnoEntidad {
         this.sexo = sexo;
     }
 
-    // Constructor para DELETE
+    // Constructor para DELETE o BUSCAR
     public AlumnoEntidad(int id) {
         this.id = id;
     } 
@@ -75,11 +75,11 @@ public class AlumnoEntidad {
         this.activo = activo;
     }
 
-    public float getPromedio() {
+    public double getPromedio() {
         return promedio;
     }
 
-    public void setPromedio(float promedio) {
+    public void setPromedio(double promedio) {
         this.promedio = promedio;
     }
 

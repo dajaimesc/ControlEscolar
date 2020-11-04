@@ -12,7 +12,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <script src="https://kit.fontawesome.com/f97f12f562.js" crossorigin="anonymous"></script>
-        <link rel="stylesheet" href="controlescolar.css" class="rel">
+        <link rel="stylesheet" href="/ControlEscolar/public/css/controlescolar.css" class="rel">
         <link href="https://fonts.googleapis.com/css?family=Be+Vietnam&display=swap" rel="stylesheet">
         <title>Control Escolar 1.0</title>
     </head>
@@ -48,6 +48,6 @@
             </ul>
         </div>
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-        <script type="text/javascript" src="controlescolar.js"></script>
+        <script type="text/javascript" src="/ControlEscolar/public/js/controlescolar.js"></script>
     </body>
 </html>

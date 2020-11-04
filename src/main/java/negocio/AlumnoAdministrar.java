@@ -10,6 +10,8 @@ import datos.IAlumnoDatos;
 import domain.AlumnoEntidad;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Implementación de la Interface de Alumnos
@@ -37,6 +39,17 @@ public class AlumnoAdministrar implements IAlumnoAdministrar{
         for (AlumnoEntidad alumnotmp : alumnos) {
             System.out.println("alumnotmp = " + alumnotmp);
         }
+    }
+
+    @Override
+    public void buscarAlumnno(AlumnoEntidad alumno) {
+        try {
+            this.alumno.buscar(alumno);
+        }
+        catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        }
+        System.out.println("alumno = " + alumno);
     }
 
     @Override

@@ -16,7 +16,8 @@ import java.util.List;
  */
 public interface IAlumnoDatos {
     public List<AlumnoEntidad> seleccionar() throws SQLException;
-    public void insertar(AlumnoEntidad alumno) throws SQLException;
+    public int insertar(AlumnoEntidad alumno) throws SQLException;
     public void borrar(AlumnoEntidad alumno) throws SQLException;
+    public AlumnoEntidad buscar(AlumnoEntidad alumno) throws SQLException;
     public void actualizar(AlumnoEntidad alumno) throws SQLException;
 }
