@@ -3,27 +3,27 @@
  * PROGRAMACION DE APLICACIONES WEB
  * 2020
  */
-package vistas;
+package pruebas;
 
+import datos.AlumnoDatos;
+import datos.IAlumnoDatos;
 import domain.AlumnoEntidad;
-import negocio.AlumnoAdministrar;
-import negocio.IAlumnoAdministrar;
+import java.sql.SQLException;
 
 /**
  *
  * @author dajaimes
  */
-public class AlumnoProbar {
+public class AlumnoProbar1 {
 
-    public static void main(String[] args) {
-        IAlumnoAdministrar alumno = new AlumnoAdministrar();
+    public static void main(String[] args) throws SQLException {
+        IAlumnoDatos alumno = new AlumnoDatos();
 
         // Estos datos vendrán del JSP cliente
         AlumnoEntidad alumnoDeHTML = new AlumnoEntidad();
 
         // SELECT
-        
-         alumno.seleccionarAlumnno(alumnoDeHTML);
+         System.out.println(alumno.seleccionar());
         
         // PROBANDO Buscar por ID
         /*

@@ -23,10 +23,10 @@
                 <li><a href="#"><i class="icono left fas fa-house-damage"></i>Inicio</li></a>
                 <li><a href="#"><i class="icono left fas fa-user-graduate"></i>Alumnos<i class="icono right fas fa-angle-down"></i></a>
                     <ul>
-                        <li><a href="#">Agregar</a></li>
+                        <li><a href="">Agregar</a></li>
                         <li><a href="#">Modificar</a></li>
                         <li><a href="#">Eliminar</a></li>
-                        <li><a href="#">Listar</a></li>
+                        <li><a href="${pageContext.request.contextPath}/ServletAlumno">Listar</a></li>
                     </ul>
                 </li>
                 <li><a href="#"><i class="icono left fas fa-id-badge"></i>Profesores<i class="icono right fas fa-angle-down"></i></a>
