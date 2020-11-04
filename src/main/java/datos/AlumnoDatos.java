@@ -10,7 +10,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,12 +32,12 @@ public class AlumnoDatos implements IAlumnoDatos {
 
     private static final String SQLINSERT = "INSERT INTO alumnos(activo, promedio,"
             + "nombre, paterno, materno, matricula, correo, sexo)"
-            + "VALUES (?.?,?,?,?,?,?,?)";
+            + "VALUES (?,?,?,?,?,?,?,?)";
 
-    private static final String SQLUPDATE = "UPDATE alumnos"
+    private static final String SQLUPDATE = "UPDATE alumnos "
             + "SET activo = ?, promedio = ?, nombre = ?, paterno=?, materno=?,"
-            + "matricula=?, correo=?, sexo=?"
-            + "WHERE id=?";
+            + "matricula = ?, correo = ?, sexo = ?"
+            + "WHERE id = ?";
 
     private static final String SQLDELETE = "DELETE FROM alumnos WHERE id=?";
 
@@ -138,7 +137,6 @@ public class AlumnoDatos implements IAlumnoDatos {
         // Objetos necesarios para BD
         Connection conn = null;
         PreparedStatement stmt = null;
-        ResultSet rs = null;
         int filasAfectadas = 0;
 
         try {
@@ -167,14 +165,64 @@ public class AlumnoDatos implements IAlumnoDatos {
         return filasAfectadas;    
     }
 
-    @Override
-    public void borrar(AlumnoEntidad alumno) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
 
     @Override
-    public void actualizar(AlumnoEntidad alumno) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
+    public int actualizar(AlumnoEntidad alumno) throws SQLException {
+        
+        // Objetos necesarios para BD
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        int filasAfectadas = 0;
 
+        try {
+            conn = Conexion.getConnection();             
+            
+            stmt = conn.prepareStatement(SQLUPDATE);     // Sentencia SQL
+            stmt.setInt(1, alumno.getActivo());
+            stmt.setDouble(2, alumno.getPromedio());
+            stmt.setString(3, alumno.getNombre());
+            stmt.setString(4, alumno.getPaterno());
+            stmt.setString(5, alumno.getMaterno());
+            stmt.setString(6, alumno.getMatricula());
+            stmt.setString(7, alumno.getCorreo());
+            stmt.setString(8, alumno.getSexo());
+            stmt.setInt(9, alumno.getId());
+            
+            filasAfectadas = stmt.executeUpdate();  // Registos afectados
+        }
+        catch (SQLException e) {
+            e.printStackTrace(System.out);
+        }
+        finally {           // los bloques finally siempre se ejecutan
+            stmt.close();
+            conn.close();
+        }
+        return filasAfectadas;  
+    }
+    
+    @Override
+    public int eliminar(AlumnoEntidad alumno) throws SQLException {
+                
+        // Objetos necesarios para BD
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        int filasAfectadas = 0;
+
+        try {
+            conn = Conexion.getConnection();             
+            
+            stmt = conn.prepareStatement(SQLDELETE);     // Sentencia SQL
+            stmt.setInt(1, alumno.getId());
+            
+            filasAfectadas = stmt.executeUpdate();  // Registos afectados
+        }
+        catch (SQLException e) {
+            e.printStackTrace(System.out);
+        }
+        finally {           // los bloques finally siempre se ejecutan
+            stmt.close();
+            conn.close();
+        }
+        return filasAfectadas;  
+    }
 }

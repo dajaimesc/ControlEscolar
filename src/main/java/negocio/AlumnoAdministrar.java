@@ -15,10 +15,10 @@ import java.util.logging.Logger;
 
 /**
  * Implementación de la Interface de Alumnos
- * 
+ *
  * @author dajaimes
  */
-public class AlumnoAdministrar implements IAlumnoAdministrar{
+public class AlumnoAdministrar implements IAlumnoAdministrar {
 
     // Definir el objeto alumno
     private final IAlumnoDatos alumno;
@@ -53,21 +53,39 @@ public class AlumnoAdministrar implements IAlumnoAdministrar{
     }
 
     @Override
-    public void agregarAlumno(AlumnoEntidad alumno) {
+    public int agregarAlumno(AlumnoEntidad alumno) {
+        int rows = 0;
         try {
-            this.alumno.insertar(alumno);
+            rows = this.alumno.insertar(alumno);
         }
         catch (SQLException ex) {
             ex.printStackTrace(System.out); // Enviar la excepción a la consiola
         }
+        return rows;
     }
 
     @Override
-    public void eliminarAlumno(AlumnoEntidad alumno) {
+    public int eliminarAlumno(AlumnoEntidad alumno) {
+        int rows = 0;
+        try {
+            rows = this.alumno.eliminar(alumno);
+        }
+        catch (SQLException ex) {
+            ex.printStackTrace(System.out); // Enviar la excepción a la consiola
+        }
+        return rows;
     }
 
-    @Override
-    public void actualizarAlumno(AlumnoEntidad alumno) {
+@Override
+        public int actualizarAlumno(AlumnoEntidad alumno) {
+        int rows = 0;
+        try {
+            rows = this.alumno.actualizar(alumno);
+        }
+        catch (SQLException ex) {
+            ex.printStackTrace(System.out); // Enviar la excepción a la consiola
+        }
+        return rows;
     }
-    
+
 }

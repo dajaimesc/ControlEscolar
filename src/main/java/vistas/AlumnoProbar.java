@@ -14,22 +14,24 @@ import negocio.IAlumnoAdministrar;
  * @author dajaimes
  */
 public class AlumnoProbar {
+
     public static void main(String[] args) {
         IAlumnoAdministrar alumno = new AlumnoAdministrar();
- 
-        // PROBANDO Listar alumnos
-        // AlumnoEntidad alumnoDeHTML = new AlumnoEntidad();
-        // alumno.seleccionarAlumnno(alumnoDeHTML);
+
+        // Estos datos vendrán del JSP cliente
+        AlumnoEntidad alumnoDeHTML = new AlumnoEntidad();
+
+        // SELECT
+        
+         alumno.seleccionarAlumnno(alumnoDeHTML);
         
         // PROBANDO Buscar por ID
-        // AlumnoEntidad alumnoDeHTML =  new AlumnoEntidad(); // Simula la captura
-        // alumnoDeHTML.setId(3);
-        // alumno.buscarAlumnno(alumnoDeHTML);
-        
-        // PROBANDO Insertar 
-        AlumnoEntidad alumnoDeHTML =  new AlumnoEntidad(); 
-        
-        // Simulamos la captura en HTML del alumno
+        /*
+         alumnoDeHTML.setId(3);
+         alumno.buscarAlumnno(alumnoDeHTML);
+         */
+        // INSERT 
+        /*
         alumnoDeHTML.setActivo(1);
         alumnoDeHTML.setCorreo("al061620@uacam.mx");
         alumnoDeHTML.setMaterno("ALDANA");
@@ -40,6 +42,24 @@ public class AlumnoProbar {
         alumnoDeHTML.setSexo("H");
         
         alumno.agregarAlumno(alumnoDeHTML);
-        
+         */
+        // DELETE 
+        /*
+        alumnoDeHTML.setId(3);
+        alumno.eliminarAlumno(alumnoDeHTML);
+         */
+        // UPDATE
+        /*
+        alumnoDeHTML.setId(4);
+        alumnoDeHTML.setActivo(1);
+        alumnoDeHTML.setCorreo("al060881@uacam.mx");
+        alumnoDeHTML.setMaterno("CANUL");
+        alumnoDeHTML.setMatricula("60881");
+        alumnoDeHTML.setNombre("JESÚS ABRAHAM");
+        alumnoDeHTML.setPaterno("NAVARRETE");
+        alumnoDeHTML.setPromedio(8.3);
+        alumnoDeHTML.setSexo("H");
+        alumno.actualizarAlumno(alumnoDeHTML);
+        */
     }
 }
