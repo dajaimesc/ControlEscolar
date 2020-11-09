@@ -13,8 +13,6 @@ import static java.lang.Integer.parseInt;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -112,6 +110,7 @@ public class ServletAlumno extends HttpServlet {
 
         // Recuperamos los valores del formulario
         AlumnoEntidad alumnoForm = new AlumnoEntidad();
+        
         alumnoForm.setNombre(request.getParameter("nombre"));
         alumnoForm.setPaterno(request.getParameter("paterno"));
         alumnoForm.setMaterno(request.getParameter("materno"));
@@ -123,7 +122,7 @@ public class ServletAlumno extends HttpServlet {
         alumnoForm.setPromedio(promedio);
         
         int activo = parseInt(request.getParameter("activo"));
-        alumnoForm.setPromedio(activo);
+        alumnoForm.setActivo(activo);
 
         // Agregamos el registro a la Base de Datos
         IAlumnoDatos alumnoD = new AlumnoDatos();

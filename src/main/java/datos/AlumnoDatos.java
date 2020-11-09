@@ -140,7 +140,7 @@ public class AlumnoDatos implements IAlumnoDatos {
         int filasAfectadas = 0;
 
         try {
-            conn = Conexion.getConnection();             
+            conn = Conexion.getConnection();
             
             stmt = conn.prepareStatement(SQLINSERT);     // Sentencia SQL
             stmt.setInt(1, alumno.getActivo());
@@ -151,7 +151,6 @@ public class AlumnoDatos implements IAlumnoDatos {
             stmt.setString(6, alumno.getMatricula());
             stmt.setString(7, alumno.getCorreo());
             stmt.setString(8, alumno.getSexo());
-            
             
             filasAfectadas = stmt.executeUpdate();  // Registos afectados
         }

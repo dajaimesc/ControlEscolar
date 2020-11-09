@@ -47,7 +47,7 @@
                     </div>
                     <div class="form-group">
                         <label for="activo">Activo</label>
-                        <input type="number" class="form-control" name="activo" required>
+                        <input type="number" class="form-control" name="activo" value="1">
                     </div>
                 </div>
                 <div class="modal-footer">
