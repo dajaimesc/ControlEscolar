@@ -9,7 +9,7 @@
         <div class="row">
             <div class="col-md-3">
                 <a href="#" class="btn btn-primary btn-block"
-                   data-toggle="modal" data-target="agregarAlumno">
+                   data-toggle="modal" data-target="#agregarAlumno">
                     <i class="fas fa-plus"></i>Agregar alumno
                 </a>
             </div>

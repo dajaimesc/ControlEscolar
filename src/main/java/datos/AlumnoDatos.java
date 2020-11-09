@@ -165,7 +165,6 @@ public class AlumnoDatos implements IAlumnoDatos {
         return filasAfectadas;    
     }
 
-
     @Override
     public int actualizar(AlumnoEntidad alumno) throws SQLException {
         

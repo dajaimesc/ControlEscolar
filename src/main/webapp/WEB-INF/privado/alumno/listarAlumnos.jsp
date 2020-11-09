@@ -71,3 +71,6 @@
         </div>
     </div>
 </section>
+
+<!-- Agregar alumno -->
+<jsp:include page="/WEB-INF/privado/alumno/agregarAlumno.jsp" />
