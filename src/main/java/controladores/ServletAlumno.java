@@ -18,6 +18,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Front Controller de MVC
@@ -88,14 +89,25 @@ public class ServletAlumno extends HttpServlet {
         double desviacionEstandarGeneral = estadistica.getDesviacionEstandar();
 
         // Compartir las variables con el JSP
-        request.setAttribute("promedioGeneral", promedioGeneral);
-        request.setAttribute("desviacionEstandarGeneral", desviacionEstandarGeneral);
-
-        // Compartimos la información obtenida
-        request.setAttribute("alumnos", alumnos);
-
+        HttpSession sesion = request.getSession();
+                
+                // Compartimos la información obtenida
+        //request.setAttribute("promedioGeneral", promedioGeneral);
+        //request.setAttribute("desviacionEstandarGeneral", desviacionEstandarGeneral);
+        //request.setAttribute("alumnos", alumnos);
+        
+                // Compartimos la información obtenida
+        sesion.setAttribute("promedioGeneral", promedioGeneral);
+        sesion.setAttribute("desviacionEstandarGeneral", desviacionEstandarGeneral);
+        sesion.setAttribute("alumnos", alumnos);
+        
+        
         // Hacemos un forward a la vista. alumnos.jsp debe ir en Web Pages
-        request.getRequestDispatcher("alumnos.jsp").forward(request, response);
+        //request.getRequestDispatcher("alumnos.jsp").forward(request, response);
+        
+        // Usar esto para que no duplique registros.
+        response.sendRedirect("alumnos.jsp");
+        
     }
 
     // Método privado, solo para modular el código
