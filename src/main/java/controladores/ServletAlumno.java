@@ -9,7 +9,6 @@ import datos.AlumnoDatos;
 import datos.IAlumnoDatos;
 import domain.AlumnoEntidad;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,62 +28,52 @@ import javax.servlet.http.HttpServletResponse;
 public class ServletAlumno extends HttpServlet {
 
     @Override
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        
-        IAlumnoDatos alumno = new AlumnoDatos();
-        
-        List<AlumnoEntidad> alumnos =  new ArrayList<>();
-        
-        try {
-            alumnos =  alumno.seleccionar();
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws IOException, ServletException {
+
+        String accion = request.getParameter("accion");
+
+        switch (accion) {
+            case "seleccionar":
+                IAlumnoDatos alumno = new AlumnoDatos();
+                List<AlumnoEntidad> alumnos = new ArrayList<>();
+                try {
+                    alumnos = alumno.seleccionar();
+                }
+                catch (SQLException ex) {
+                    ex.printStackTrace(System.out);
+                }
+                
+                // Calcular Promedio y Desviación Estándar de clase Estadística
+                Estadistica estadistica = new Estadistica(alumnos);
+                double promedioGeneral = estadistica.getMedia();
+                double desviacionEstandarGeneral = estadistica.getDesviacionEstandar();
+                
+                // Compartir las variables con el JSP
+                request.setAttribute("promedioGeneral", promedioGeneral);
+                request.setAttribute("desviacionEstandarGeneral", desviacionEstandarGeneral);
+                
+                // Compartimos la información obtenida
+                request.setAttribute("alumnos", alumnos);
+
+                // Hacemos un forward a la vista. alumnos.jsp debe ir en Web Pages
+                request.getRequestDispatcher("alumnos.jsp").forward(request, response);
+                break;
+
+            default:
+                throw new AssertionError();
         }
-        catch (SQLException ex) {
-            ex.printStackTrace(System.out);
-        }
-        
-        // Compartimos la información obtenida
-        request.setAttribute("alumnos", alumnos);
-        
-        // Hacemos un forward a la vista.
-        // Para que funcionara puse el alumnos.jsp en Web Pages
-        request.getRequestDispatcher("alumnos.jsp").forward(request, response);
-        
-                // TEST
-        
-        PrintWriter out = response.getWriter();
-        out.print("<html>");
-        out.print("<body>");
-        out.print("servlet Alumno doGet()");
-        out.print("<body>");
-        out.print("<html>");
-        
     }
 
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        
-                // TEST
-        PrintWriter out = response.getWriter();
+
+        // TEST
+        /*PrintWriter out = response.getWriter();
         out.print("<html>");
         out.print("<body>");
         out.print("servlet Alumno doPost()");
         out.print("<body>");
-        out.print("<html>");
-        /*
-        IAlumnoDatos alumno = new AlumnoDatos();
-        List<AlumnoEntidad> alumnos =  new ArrayList<>();
-        
-        try {
-            alumnos =  alumno.seleccionar();
-        }
-        catch (SQLException ex) {
-            ex.printStackTrace(System.out);
-        }
-        
-        // Compartimos la información obtenida
-        request.setAttribute("alumnos", alumnos);
-        
-        // Hacemos un forward a la vista.
-        request.getRequestDispatcher("/vistas/alumnos.jsp").forward(request, response); */
+        out.print("<html>"); */
     }
 }
