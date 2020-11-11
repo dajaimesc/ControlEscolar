@@ -47,7 +47,6 @@ public class ServletAlumno extends HttpServlet {
             break;
 
             case "eliminar":
-
                 try {
                 this.eliminarAlumno(request, response);
             }
