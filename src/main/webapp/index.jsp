@@ -34,7 +34,7 @@
                         <li><a href="#">Agregar</a></li>
                         <li><a href="#">Modificar</a></li>
                         <li><a href="#">Eliminar</a></li>
-                        <li><a href="${pageContext.request.contextPath}/ServletAlumno?accion=seleccionar" target="_blank">Listar</a></li>
+                        <li><a href="${pageContext.request.contextPath}/ServletAlumno?accion=listar">Listar</a></li>
                     </ul>
                 </li>
                 <li>

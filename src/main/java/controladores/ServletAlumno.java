@@ -13,8 +13,6 @@ import static java.lang.Integer.parseInt;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -51,17 +49,27 @@ public class ServletAlumno extends HttpServlet {
             case "eliminar":
 
                 try {
-                    this.eliminarAlumno(request, response);
-                }
-                catch (SQLException ex) {
-                    ex.printStackTrace(System.out);
-                }
+                this.eliminarAlumno(request, response);
+            }
+            catch (SQLException ex) {
+                ex.printStackTrace(System.out);
+            }
 
-                break;
+            break;
 
+            case "listar":
+
+                try {
+                this.listarAlumno(request, response);
+            }
+            catch (SQLException ex) {
+                ex.printStackTrace(System.out);
+            }
+
+            break;
             default: {
                 try {
-                    this.accionDefault(request, response);
+                    this.listarAlumno(request, response);
                 }
                 catch (SQLException ex) {
                     ex.printStackTrace(System.out);
@@ -93,8 +101,6 @@ public class ServletAlumno extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {
 
-        // TEST /*PrintWriter out = response.getWriter(); out.print("<html>");*/
-        // Post es para formularios
         String accion = request.getParameter("accion");
 
         switch (accion) {
@@ -111,31 +117,28 @@ public class ServletAlumno extends HttpServlet {
             case "modificar":
 
                 try {
-                    this.modificarAlumno(request, response);
-                }
-                catch (SQLException ex) {
-                    ex.printStackTrace(System.out);
-                }
-                
-                break;
+                this.modificarAlumno(request, response);
+            }
+            catch (SQLException ex) {
+                ex.printStackTrace(System.out);
+            }
 
+            break;
 
             default: {
                 try {
-                    // Página de inicio de alumnos
-                    this.accionDefault(request, response);
+                    this.listarAlumno(request, response);
                 }
                 catch (SQLException ex) {
                     ex.printStackTrace(System.out);
                 }
             }
-
         }
     }
 
-    // Listar todos los alumnos es la acción default
-    private void accionDefault(HttpServletRequest request, HttpServletResponse response)
-            throws SQLException, ServletException, IOException {
+    // Método privado, solo para modular el código
+    private void listarAlumno(HttpServletRequest request, HttpServletResponse response)
+            throws IOException, ServletException, SQLException {
 
         IAlumnoDatos alumno = new AlumnoDatos();
         List<AlumnoEntidad> alumnos = new ArrayList<>();
@@ -147,32 +150,18 @@ public class ServletAlumno extends HttpServlet {
         double promedioGeneral = estadistica.getMedia();
         double desviacionEstandarGeneral = estadistica.getDesviacionEstandar();
 
-        // Compartir las variables con el JSP
+        // Compartir las variables con el JSP en el alcance de session
         HttpSession sesion = request.getSession();
 
-        // Compartimos la información obtenida
-        //request.setAttribute("promedioGeneral", promedioGeneral);
-        //request.setAttribute("desviacionEstandarGeneral", desviacionEstandarGeneral);
-        //request.setAttribute("alumnos", alumnos);
-        // Compartimos la información obtenida
+        // Compartimos la información obtenida con otros módulos
         sesion.setAttribute("promedioGeneral", promedioGeneral);
         sesion.setAttribute("desviacionEstandarGeneral", desviacionEstandarGeneral);
         sesion.setAttribute("alumnos", alumnos);
 
-        // Hacemos un forward a la vista. alumnos.jsp debe ir en Web Pages
-        //request.getRequestDispatcher("alumnos.jsp").forward(request, response);
-        // Usar esto para que no duplique registros.
+        // Para evitar el reenvío del formulario y la duplicidad de registros
         response.sendRedirect("alumnos.jsp");
-
     }
 
-    // Método privado, solo para modular el código
-    private void seleccionarAlumno(HttpServletRequest request, HttpServletResponse response)
-            throws IOException, ServletException, SQLException {
-
-    }
-
-// Método privado, solo para modular el código
     private int agregarAlumno(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException, SQLException {
 
@@ -195,15 +184,13 @@ public class ServletAlumno extends HttpServlet {
         // Agregamos el registro a la Base de Datos
         IAlumnoDatos alumnoD = new AlumnoDatos();
         int rows = alumnoD.insertar(alumnoForm);
-        System.out.println("rows = " + rows);
 
-        // Ejecutamos nuevamente la acción default para actualizar el cliente.
-        this.accionDefault(request, response);
+        // Actualizamos alumnos en el JSP
+        this.listarAlumno(request, response);
 
         return rows;
     }
 
-    // Método privado, solo para modular el código
     private int modificarAlumno(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException, SQLException {
 
@@ -213,7 +200,7 @@ public class ServletAlumno extends HttpServlet {
         // Leer el id del navegador
         int id = Integer.parseInt(request.getParameter("id"));
 
-        // Se requiere el Id por que será un update
+        // Se requiere el Id por que se realizará un update
         alumnoForm.setId(id);
 
         alumnoForm.setNombre(request.getParameter("nombre"));
@@ -232,15 +219,14 @@ public class ServletAlumno extends HttpServlet {
         // Agregamos el registro a la Base de Datos
         IAlumnoDatos alumnoD = new AlumnoDatos();
         int rows = alumnoD.actualizar(alumnoForm);
-        System.out.println("rows = " + rows);
 
-        // Ejecutamos nuevamente la acción default para actualizar el cliente.
-        this.accionDefault(request, response);
+        // Actualizamos alumnos en el JSP
+        this.listarAlumno(request, response);
 
         return rows;
     }
-    
-        private int eliminarAlumno(HttpServletRequest request, HttpServletResponse response)
+
+    private int eliminarAlumno(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException, SQLException {
 
         // Recuperamos los valores del formulario
@@ -255,10 +241,9 @@ public class ServletAlumno extends HttpServlet {
         // Agregamos el registro a la Base de Datos
         IAlumnoDatos alumnoD = new AlumnoDatos();
         int rows = alumnoD.eliminar(alumnoForm);
-        System.out.println("rows = " + rows);
 
-        // Ejecutamos nuevamente la acción default para actualizar el cliente.
-        this.accionDefault(request, response);
+        // Actualizamos alumnos en el JSP
+        this.listarAlumno(request, response);
 
         return rows;
     }

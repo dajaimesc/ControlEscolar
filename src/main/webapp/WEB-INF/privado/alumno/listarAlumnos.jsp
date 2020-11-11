@@ -6,8 +6,9 @@
 <%-- Librería de core para JSP --%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<%-- Librería para formatear cantiades en HTML --%>
+<%-- Librería para formatear cantidades en HTML --%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <fmt:setLocale value="es_MX" />
 
 
