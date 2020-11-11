@@ -13,6 +13,8 @@ import static java.lang.Integer.parseInt;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -33,13 +35,47 @@ public class ServletAlumno extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {
 
-        try {
-            // Listar todos los alumnos
-            this.accionDefault(request, response);
+        String accion = request.getParameter("accion");
+
+        switch (accion) {
+            case "editar": {
+                try {
+                    this.editarAlumno(request, response);
+                }
+                catch (SQLException ex) {
+                    ex.printStackTrace(System.out);
+                }
+            }
+            break;
+
+            default: {
+                try {
+                    this.accionDefault(request, response);
+                }
+                catch (SQLException ex) {
+                    ex.printStackTrace(System.out);
+                }
+            }
         }
-        catch (SQLException ex) {
-            ex.printStackTrace(System.out);
-        }
+    }
+
+    private void editarAlumno(HttpServletRequest request, HttpServletResponse response)
+            throws IOException, ServletException, SQLException {
+
+        // Leer el id del navegador
+        int id = Integer.parseInt(request.getParameter("id"));
+
+        // Recuperar los valores del alumno de la BD
+        IAlumnoDatos alumnoD = new AlumnoDatos();
+        AlumnoEntidad alumnoE = new AlumnoEntidad(id);
+        alumnoE = alumnoD.buscar(alumnoE);
+
+        // Compartir los datos del alumno en el sistema
+        request.setAttribute("alumno", alumnoE);
+
+        // Los datos obtenidos del registro seleccionado se desplegarán en el JSP
+        String jspE = "/WEB-INF/privado/alumno/editarAlumno.jsp";
+        request.getRequestDispatcher(jspE).forward(request, response);
     }
 
     @Override
@@ -60,6 +96,18 @@ public class ServletAlumno extends HttpServlet {
                 }
             }
             break;
+
+            case "modificar":
+
+                try {
+                    this.modificarAlumno(request, response);
+                }
+                catch (SQLException ex) {
+                    ex.printStackTrace(System.out);
+                }
+                
+                break;
+
 
             default: {
                 try {
@@ -90,24 +138,21 @@ public class ServletAlumno extends HttpServlet {
 
         // Compartir las variables con el JSP
         HttpSession sesion = request.getSession();
-                
-                // Compartimos la información obtenida
+
+        // Compartimos la información obtenida
         //request.setAttribute("promedioGeneral", promedioGeneral);
         //request.setAttribute("desviacionEstandarGeneral", desviacionEstandarGeneral);
         //request.setAttribute("alumnos", alumnos);
-        
-                // Compartimos la información obtenida
+        // Compartimos la información obtenida
         sesion.setAttribute("promedioGeneral", promedioGeneral);
         sesion.setAttribute("desviacionEstandarGeneral", desviacionEstandarGeneral);
         sesion.setAttribute("alumnos", alumnos);
-        
-        
+
         // Hacemos un forward a la vista. alumnos.jsp debe ir en Web Pages
         //request.getRequestDispatcher("alumnos.jsp").forward(request, response);
-        
         // Usar esto para que no duplique registros.
         response.sendRedirect("alumnos.jsp");
-        
+
     }
 
     // Método privado, solo para modular el código
@@ -122,23 +167,60 @@ public class ServletAlumno extends HttpServlet {
 
         // Recuperamos los valores del formulario
         AlumnoEntidad alumnoForm = new AlumnoEntidad();
-        
+
         alumnoForm.setNombre(request.getParameter("nombre"));
         alumnoForm.setPaterno(request.getParameter("paterno"));
         alumnoForm.setMaterno(request.getParameter("materno"));
         alumnoForm.setCorreo(request.getParameter("correo"));
         alumnoForm.setSexo(request.getParameter("sexo"));
         alumnoForm.setMatricula(request.getParameter("matricula"));
-        
+
         double promedio = Double.parseDouble(request.getParameter("promedio"));
         alumnoForm.setPromedio(promedio);
-        
+
         int activo = parseInt(request.getParameter("activo"));
         alumnoForm.setActivo(activo);
 
         // Agregamos el registro a la Base de Datos
         IAlumnoDatos alumnoD = new AlumnoDatos();
         int rows = alumnoD.insertar(alumnoForm);
+        System.out.println("rows = " + rows);
+
+        // Ejecutamos nuevamente la acción default para actualizar el cliente.
+        this.accionDefault(request, response);
+
+        return rows;
+    }
+
+    // Método privado, solo para modular el código
+    private int modificarAlumno(HttpServletRequest request, HttpServletResponse response)
+            throws IOException, ServletException, SQLException {
+
+        // Recuperamos los valores del formulario
+        AlumnoEntidad alumnoForm = new AlumnoEntidad();
+
+        // Leer el id del navegador
+        int id = Integer.parseInt(request.getParameter("id"));
+
+        // Se requiere el Id por que será un update
+        alumnoForm.setId(id);
+
+        alumnoForm.setNombre(request.getParameter("nombre"));
+        alumnoForm.setPaterno(request.getParameter("paterno"));
+        alumnoForm.setMaterno(request.getParameter("materno"));
+        alumnoForm.setCorreo(request.getParameter("correo"));
+        alumnoForm.setSexo(request.getParameter("sexo"));
+        alumnoForm.setMatricula(request.getParameter("matricula"));
+
+        double promedio = Double.parseDouble(request.getParameter("promedio"));
+        alumnoForm.setPromedio(promedio);
+
+        int activo = parseInt(request.getParameter("activo"));
+        alumnoForm.setActivo(activo);
+
+        // Agregamos el registro a la Base de Datos
+        IAlumnoDatos alumnoD = new AlumnoDatos();
+        int rows = alumnoD.actualizar(alumnoForm);
         System.out.println("rows = " + rows);
 
         // Ejecutamos nuevamente la acción default para actualizar el cliente.
