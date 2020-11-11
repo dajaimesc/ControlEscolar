@@ -19,6 +19,13 @@
                     <i class="fas fa-check"></i> Guardar
                 </button>
             </div>
+            <!<!-- Borrar alumno se procesa en doGET-->
+            <div class="col-md-3">
+                <a href="${pageContext.request.contextPath}/ServletAlumno?accion=eliminar&id=${alumno.id}"
+                   class="btn btn-danger btn-block">
+                    <i class="fas fa-trash"></i> Eliminar
+                </a>
+            </div>
         </div>
     </div>
     

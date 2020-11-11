@@ -48,6 +48,17 @@ public class ServletAlumno extends HttpServlet {
             }
             break;
 
+            case "eliminar":
+
+                try {
+                    this.eliminarAlumno(request, response);
+                }
+                catch (SQLException ex) {
+                    ex.printStackTrace(System.out);
+                }
+
+                break;
+
             default: {
                 try {
                     this.accionDefault(request, response);
@@ -228,4 +239,28 @@ public class ServletAlumno extends HttpServlet {
 
         return rows;
     }
+    
+        private int eliminarAlumno(HttpServletRequest request, HttpServletResponse response)
+            throws IOException, ServletException, SQLException {
+
+        // Recuperamos los valores del formulario
+        AlumnoEntidad alumnoForm = new AlumnoEntidad();
+
+        // Leer el id del navegador
+        int id = Integer.parseInt(request.getParameter("id"));
+
+        // Se requiere el Id por que será un update
+        alumnoForm.setId(id);
+
+        // Agregamos el registro a la Base de Datos
+        IAlumnoDatos alumnoD = new AlumnoDatos();
+        int rows = alumnoD.eliminar(alumnoForm);
+        System.out.println("rows = " + rows);
+
+        // Ejecutamos nuevamente la acción default para actualizar el cliente.
+        this.accionDefault(request, response);
+
+        return rows;
+    }
+
 }
