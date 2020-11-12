@@ -48,7 +48,7 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="${pageContext.request.contextPath}/ServletLogin?accion=salir"><i class="icono left fas fa-sign-out-alt"></i>Salir</a>
+                    <a href="${pageContext.request.contextPath}/ServletUsuario?accion=salir"><i class="icono left fas fa-sign-out-alt"></i>Salir</a>
                 </li>
             </ul>
         </div>

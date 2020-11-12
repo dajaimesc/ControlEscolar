@@ -32,7 +32,7 @@
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     </div>
                     <div class="modal-body">
-                        <form action="${pageContext.request.contextPath}/ServletLogin?accion=ingresar" method="post">
+                        <form action="${pageContext.request.contextPath}/ServletUsuario?accion=ingresar" method="post">
                             <div class="form-group">
                                 <input type="text" class="form-control" name="username" placeholder="Username" required="required" autofocus>		
                             </div>
