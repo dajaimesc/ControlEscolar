@@ -22,18 +22,35 @@
             <a href="#" class="btn-menu">Menu</a>
             <ul class="menu">
                 <li>
+                    <a href="#myModal" class="trigger-btn" data-toggle="modal"><i class="icono left fas fa-house-user"></i>Inicio</a>
+                </li>
+                <li>
                     <a href="${pageContext.request.contextPath}/ServletAlumno?accion=listar">
                         <i class="icono left fas fa-user-graduate"></i>
                         Alumnos
                         <i class="icono right fas fa-angle-right"></i>
                     </a>
+                        <!--
+                    <ul>
+                        <li><a href="#">Agregar</a></li>
+                        <li><a href="#">Modificar</a></li>
+                        <li><a href="#">Eliminar</a></li>
+                        <li><a href="${pageContext.request.contextPath}/ServletAlumno?accion=listar">Listar</a></li>
+                    </ul>
+                        -->
                 </li>
                 <li>
                     <a href="#">
                         <i class="icono left fas fa-chalkboard-teacher"></i>
                         Profesores
-                        <i class="icono right fas fa-angle-right"></i>
+                        <i class="icono right fas fa-angle-down"></i>
                     </a>
+                    <ul>
+                        <li><a href="#">Agregar</a></li>
+                        <li><a href="#">Modificar</a></li>
+                        <li><a href="#">Eliminar</a></li>
+                        <li><a href="#">Listar</a></li>
+                    </ul>
                 </li>
                 <li>
                     <a href="#">

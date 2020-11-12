@@ -8,6 +8,11 @@
     <div class="container">
         <div class="row">
             <div class="col-md-3">
+                <a href="menu.jsp" class="btn bg-light btn-block">
+                    <i class="fas fa-arrow-left"></i>Regresar
+                </a>
+            </div>
+            <div class="col-md-3">
                 <a href="#" class="btn btn-primary btn-block"
                    data-toggle="modal" data-target="#agregarAlumno">
                     <i class="fas fa-plus"></i>Agregar alumno
