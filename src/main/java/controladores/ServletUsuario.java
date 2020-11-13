@@ -10,19 +10,19 @@ import datos.UsuarioDatos;
 import domain.UsuarioEntidad;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author dajaimes
  */
 @WebServlet("/ServletUsuario")
+
 public class ServletUsuario extends HttpServlet {
 
     @Override
@@ -33,6 +33,11 @@ public class ServletUsuario extends HttpServlet {
 
         switch (accion) {
             case "salir":
+
+                // destruir la sesion
+                HttpSession sesion = request.getSession();
+                sesion.invalidate();
+
                 response.sendRedirect("index.jsp");
                 break;
             default:
@@ -64,11 +69,14 @@ public class ServletUsuario extends HttpServlet {
         }
     }
 
-    private void buscarUsuario(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
+    // Esta clase es como un servlet secundario
+    private void buscarUsuario(HttpServletRequest request, HttpServletResponse response)
+            throws SQLException, IOException {
 
         String login = request.getParameter("username");
         String password = request.getParameter("password");
 
+        // Modelo (M)
         UsuarioEntidad usuarioE = new UsuarioEntidad(login, password);
         IUsuarioDatos usuarioD = new UsuarioDatos();
 
@@ -77,11 +85,31 @@ public class ServletUsuario extends HttpServlet {
         if (usuarioE.getNombre() == null) {
             response.sendRedirect("index.jsp");
         } else {
+            // Llamar al menu 
             response.sendRedirect("menu.jsp");
         }
 
         System.out.println("usuarioE = " + usuarioE);
-
     }
 
+    public void validarSesion(HttpServletRequest request, HttpServletResponse response)
+            throws SQLException, IOException {
+
+        // Activar variables de sesión para autenticación
+        response.setContentType("text/html;charset=UTF-8");
+
+        // Crear o consultar si hay una session
+        HttpSession sesion = request.getSession();
+
+        // Variables de sesión
+        if (sesion.getAttribute("nombre") == null) {
+            System.out.println("NO Hay sesion");
+            response.sendRedirect("menu.jsp");
+        } else {
+            sesion.setAttribute("nombre", "logeado");
+            
+        // Llamar al menu 
+        response.sendRedirect("menu.jsp");
+        }
+    }
 }

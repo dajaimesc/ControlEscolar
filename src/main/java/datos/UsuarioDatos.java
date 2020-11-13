@@ -33,12 +33,15 @@ public class UsuarioDatos implements IUsuarioDatos {
             conn = Conexion.getConnection();
             stmt = conn.prepareStatement(SQLSELECTPORID);
 
+            // Sustituimos las incógnitas de la cadena SQLSELECTPORID
             stmt.setString(1, usuario.getLogin());
             stmt.setString(2, usuario.getPassword());
             
             rs = stmt.executeQuery();
 
             if (rs.next()) {
+                
+                // Recuperando datos del resultset
                 int id = rs.getInt("id");
                 String login = rs.getString("login");
                 String password = rs.getString("password");

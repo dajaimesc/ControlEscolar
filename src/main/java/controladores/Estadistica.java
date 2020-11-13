@@ -33,6 +33,7 @@ public class Estadistica {
     }
 
     public double getDesviacionEstandar() {
+        
         double cuadradoMedia = 0;
         double sumaCuadradosMedia = 0;
 

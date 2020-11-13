@@ -77,6 +77,7 @@ public class ServletAlumno extends HttpServlet {
         }
     }
 
+    // SELECT
     private void editarAlumno(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException, SQLException {
 
@@ -135,10 +136,11 @@ public class ServletAlumno extends HttpServlet {
         }
     }
 
-    // Método privado, solo para modular el código
+    
     private void listarAlumno(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException, SQLException {
 
+        // Modelo
         IAlumnoDatos alumno = new AlumnoDatos();
         List<AlumnoEntidad> alumnos = new ArrayList<>();
 
@@ -161,6 +163,7 @@ public class ServletAlumno extends HttpServlet {
         response.sendRedirect("alumnos.jsp");
     }
 
+    // INSERT
     private int agregarAlumno(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException, SQLException {
 
@@ -190,6 +193,7 @@ public class ServletAlumno extends HttpServlet {
         return rows;
     }
 
+    // UPDATE
     private int modificarAlumno(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException, SQLException {
 
@@ -215,7 +219,7 @@ public class ServletAlumno extends HttpServlet {
         int activo = parseInt(request.getParameter("activo"));
         alumnoForm.setActivo(activo);
 
-        // Agregamos el registro a la Base de Datos
+        // Actualizar el registro a la Base de Datos
         IAlumnoDatos alumnoD = new AlumnoDatos();
         int rows = alumnoD.actualizar(alumnoForm);
 

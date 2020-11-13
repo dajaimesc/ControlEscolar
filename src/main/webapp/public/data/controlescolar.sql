@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 10-11-2020 a las 01:33:13
+-- Tiempo de generación: 13-11-2020 a las 01:50:07
 -- Versión del servidor: 10.4.14-MariaDB
 -- Versión de PHP: 7.4.10
 
@@ -44,15 +44,10 @@ CREATE TABLE `alumnos` (
 --
 
 INSERT INTO `alumnos` (`id`, `nombre`, `paterno`, `materno`, `matricula`, `activo`, `promedio`, `correo`, `sexo`) VALUES
-(1, 'JOSÉ DAMIÁN ', 'SÁNCHEZ ', 'LEOBARDO', '56513', 1, 9.899999618530273, 'al056513@uacam.mx', 'H'),
+(1, 'JOSÉ DAMIÁN ', 'SÁNCHEZ ', 'LEOBARDO', '56513', 1, 8.3, 'al056513@uacam.mx', 'H'),
 (2, 'JESÚS ALBERTO', 'TELLO', 'MEDINA', '58752', 1, 9.399999618530273, 'al058752@uacam.mx', 'H'),
 (4, 'JESÚS ABRAHAM', 'NAVARRETE', 'CANUL', '60881', 1, 8.3, 'al060881@uacam.mx', 'H'),
-(5, 'daniel', 'jaimes', 'carbajal', '61844', 0, 1, 'dajaimes@uacam.mx', 'H'),
-(6, 'daniel', 'asdsd', 'lopez', '61844', 0, 1, 'dajaimes@uacam.mx', 'H'),
-(7, 'daniel', 'perez', 'carbajal', '61844', 0, 1, 'dajaimes@uacam.mx', 'H'),
-(8, 'gabriela', 'jaimes', 'novelo', '66666', 0, 1, 'dajaimes@uacam.mx', 'H'),
-(9, 'daniel', 'jaimes', 'carbajal', '61844', 1, 7.3, 'dajaimes@uacam.mx', 'H'),
-(10, 'ASDASD', 'sadasd', 'lopez', '66666', 1, 8.2, 'dajaimes@uacam.mx', 'H');
+(5, 'DANIEL', 'JAIMES', 'CARBAJAL', '61844', 0, 9.3, 'dajaimes@uacam.mx', 'H');
 
 -- --------------------------------------------------------
 
@@ -219,7 +214,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `alumnos`
 --
 ALTER TABLE `alumnos`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `clases`
