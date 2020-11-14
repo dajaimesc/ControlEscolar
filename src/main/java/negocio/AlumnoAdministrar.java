@@ -1,6 +1,6 @@
 /*
- * UNIVERSIDAD AUTONOMA DE CAMPECHE
- * PROGRAMACION DE APLICACIONES WEB
+ * UNIVERSIDAD AUTONÓMA DE CAMPECHE
+ * PROGRAMACIÓN DE APLICACIONES WEB
  * 2020
  */
 package negocio;
@@ -10,8 +10,6 @@ import datos.IAlumnoDatos;
 import domain.AlumnoEntidad;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * Implementación de la Interface de Alumnos

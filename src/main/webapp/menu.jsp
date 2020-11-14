@@ -18,6 +18,7 @@
         <title>Control Escolar 1.0</title>
     </head>
     <body>
+        <!-- Validar sesión -->
         <div class="contenedor-menu">
             <a href="#" class="btn-menu">Menu</a>
             <ul class="menu">
@@ -56,6 +57,5 @@
 
         </div>
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-        <script type="text/javascript" src="/ControlEscolar/public/js/controlescolar.js"></script>
     </body>
 </html>

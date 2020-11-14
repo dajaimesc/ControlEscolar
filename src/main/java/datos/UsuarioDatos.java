@@ -1,6 +1,6 @@
 /*
- * UNIVERSIDAD AUTONOMA DE CAMPECHE
- * PROGRAMACION DE APLICACIONES WEB
+ * UNIVERSIDAD AUTONÓMA DE CAMPECHE
+ * PROGRAMACIÓN DE APLICACIONES WEB
  * 2020
  */
 package datos;
@@ -40,8 +40,6 @@ public class UsuarioDatos implements IUsuarioDatos {
             rs = stmt.executeQuery();
 
             if (rs.next()) {
-                
-                // Recuperando datos del resultset
                 int id = rs.getInt("id");
                 String login = rs.getString("login");
                 String password = rs.getString("password");

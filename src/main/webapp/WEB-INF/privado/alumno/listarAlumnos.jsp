@@ -68,7 +68,7 @@
                     </div>
                 </div>
             </div>
-            <!-- INICIA: Espacio para poner estadísticas -->
+            <!-- TERMINA: Espacio para poner estadísticas -->
         </div>
     </div>
 </section>

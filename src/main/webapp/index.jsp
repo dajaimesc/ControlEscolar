@@ -29,7 +29,6 @@
                             <img src="./public/images/avatar.png" alt="Avatar">
                         </div>				
                         <h4 class="modal-title">Control Escolar</h4>	
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     </div>
                     <div class="modal-body">
                         <form action="${pageContext.request.contextPath}/ServletUsuario?accion=ingresar" method="post">
@@ -46,7 +45,7 @@
                     </div>
                     <div class="modal-footer">
                         <a href="#">¿Olvidó su contraseña?</a>
-                        <p>UAC - Programación de aplicaciones Web</p>
+                        <p>UAC - Programación de Aplicaciones Web</p>
                     </div>
                 </div>
             </div>

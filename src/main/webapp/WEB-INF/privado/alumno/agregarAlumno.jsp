@@ -12,7 +12,7 @@
                     <span>&times;</span>
                 </button>
             </div>
-            <!<!-- Para que se llame la acción insertar con POST -->
+            <!-- Para que se llame la acción insertar con POST -->
             <form action="${pageContext.request.contextPath}/ServletAlumno?accion=agregar"
                   method="POST" class="was-validated">
                 <div class="modal-body">

@@ -3,6 +3,7 @@
     Created on : 4/11/2020, 04:12:15 PM
     Author     : dajaimes
 --%>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -28,7 +29,7 @@
         <!<!-- Listado de alumnos -->
         <jsp:include page="/WEB-INF/privado/alumno/listarAlumnos.jsp" />
         
-        <!-- Footer -->
+        <!-- Pie -->
         <jsp:include page="/WEB-INF/privado/comunes/piePagina.jsp" />
         
         <!-- Option 2: jQuery, Popper.js, and Bootstrap JS -->

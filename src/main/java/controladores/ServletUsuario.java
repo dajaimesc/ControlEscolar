@@ -1,6 +1,6 @@
-/*
- * UNIVERSIDAD AUTONOMA DE CAMPECHE
- * PROGRAMACION DE APLICACIONES WEB
+/* 
+ * UNIVERSIDAD AUTÓNOMA DE CAMPECHE
+ * PROGRAMACIÓN DE APLICACIONES WEB
  * 2020
  */
 package controladores;
@@ -85,7 +85,6 @@ public class ServletUsuario extends HttpServlet {
         if (usuarioE.getNombre() == null) {
             response.sendRedirect("index.jsp");
         } else {
-            // Llamar al menu 
             response.sendRedirect("menu.jsp");
         }
 
@@ -107,8 +106,7 @@ public class ServletUsuario extends HttpServlet {
             response.sendRedirect("menu.jsp");
         } else {
             sesion.setAttribute("nombre", "logeado");
-            
-        // Llamar al menu 
+
         response.sendRedirect("menu.jsp");
         }
     }

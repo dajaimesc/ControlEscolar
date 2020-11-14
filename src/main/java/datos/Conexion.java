@@ -1,6 +1,6 @@
 /*
- * UNIVERSIDAD AUTONOMA DE CAMPECHE
- * PROGRAMACION DE APLICACIONES WEB
+ * UNIVERSIDAD AUTONÓMA DE CAMPECHE
+ * PROGRAMACIÓN DE APLICACIONES WEB
  * 2020
  */
 package datos;
@@ -27,12 +27,20 @@ public class Conexion {
             + "&serverTimezone=UTC"
             + "&allowPublickeyRetrieval=true";
 
+        private static final String URL_PALMARTEC = "jdbc:mysql://palmartec.com:3306/"
+            + "controlescolar?"
+            + "useSSL=false"
+            + "&useTimezone=true"
+            + "&serverTimezone=UTC"
+            + "&allowPublickeyRetrieval=true";
+        
     private static final String USUARIO = "admince";
     private static final String PASSWORD = "Admince_2103";
 
     // (2) Método de conexión
     public static Connection getConnection() throws SQLException{
         return DriverManager.getConnection(URL, USUARIO, PASSWORD);
+        //return DriverManager.getConnection(URL_PALMARTEC, USUARIO, PASSWORD);
     }
 
     // (3) Método para cerrar objetos, sobrecargados.

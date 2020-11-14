@@ -8,7 +8,7 @@
     <div class="container">
         <div class="col">
             <p class="lead text-center">
-                Universidad Autónoma de Campeche | Programación de aplicaciones web
+                Universidad Autónoma de Campeche | Programación de Aplicaciones Web
             </p>
         </div>
     </div>

@@ -1,6 +1,6 @@
-/*
- * UNIVERSIDAD AUTONOMA DE CAMPECHE
- * PROGRAMACION DE APLICACIONES WEB
+/* 
+ * UNIVERSIDAD AUTÓNOMA DE CAMPECHE
+ * PROGRAMACIÓN DE APLICACIONES WEB
  * 2020
  */
 package controladores;
@@ -77,16 +77,17 @@ public class ServletAlumno extends HttpServlet {
         }
     }
 
-    // SELECT
+
     private void editarAlumno(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException, SQLException {
 
         // Leer el id del navegador
         int id = Integer.parseInt(request.getParameter("id"));
 
-        // Recuperar los valores del alumno de la BD
+        // Modelo (M) - Recuperar los valores del alumno de la BD
         IAlumnoDatos alumnoD = new AlumnoDatos();
         AlumnoEntidad alumnoE = new AlumnoEntidad(id);
+
         alumnoE = alumnoD.buscar(alumnoE);
 
         // Compartir los datos del alumno en el sistema
@@ -135,8 +136,8 @@ public class ServletAlumno extends HttpServlet {
             }
         }
     }
-
     
+    // SELECT
     private void listarAlumno(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException, SQLException {
 
@@ -229,6 +230,7 @@ public class ServletAlumno extends HttpServlet {
         return rows;
     }
 
+    // DELETE
     private int eliminarAlumno(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException, SQLException {
 

@@ -1,6 +1,6 @@
-/*
- * UNIVERSIDAD AUTONOMA DE CAMPECHE
- * PROGRAMACION DE APLICACIONES WEB
+/* 
+ * UNIVERSIDAD AUTÓNOMA DE CAMPECHE
+ * PROGRAMACIÓN DE APLICACIONES WEB
  * 2020
  */
 package datos;
@@ -48,15 +48,15 @@ public class AlumnoDatos implements IAlumnoDatos {
         PreparedStatement stmt = null;
         ResultSet rs = null;
         AlumnoEntidad alumno = null;
-        List<AlumnoEntidad> alumnos = new ArrayList<>();     //Lista de alumnos
+        List<AlumnoEntidad> alumnos = new ArrayList<>();     
 
         try {
-            conn = Conexion.getConnection();                // Conexión
-            stmt = conn.prepareStatement(SQLSELECT);        // Sentencia SQL Sanear
-            rs = stmt.executeQuery();              // Resultados
+            conn = Conexion.getConnection();                
+            stmt = conn.prepareStatement(SQLSELECT);        
+            rs = stmt.executeQuery();              
 
             while (rs.next()) {                 // Recorremos el RecorSet
-                int id = rs.getInt("id");       // Obtener valores de BD.
+                int id = rs.getInt("id");       
                 int activo = rs.getInt("activo");
                 double promedio = rs.getDouble("promedio");
                 String nombre = rs.getString("nombre");
@@ -69,13 +69,14 @@ public class AlumnoDatos implements IAlumnoDatos {
                 //  Crear el objeto alumno
                 alumno = new AlumnoEntidad(id, activo, promedio, nombre, paterno,
                         materno, matricula, correo, sexo);
-                alumnos.add(alumno);    // Agregar el alumno a la Lista de alumnos
+                
+                // Agregar el alumno a la Lista de alumnos
+                alumnos.add(alumno);    
             }
         }
         catch (SQLException e) {
             e.printStackTrace(System.out);
         }
-
         rs.close();
         stmt.close();
         conn.close();
@@ -85,20 +86,18 @@ public class AlumnoDatos implements IAlumnoDatos {
     @Override
     public AlumnoEntidad buscar(AlumnoEntidad alumno) throws SQLException {
 
-        // Objetos necesarios para BD
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
 
         try {
-            conn = Conexion.getConnection();                  // Conexión
-            stmt = conn.prepareStatement(SQLSELECTPORID);     // Sentencia SQL
+            conn = Conexion.getConnection();               
+            stmt = conn.prepareStatement(SQLSELECTPORID);     
 
-            // (1,1) el primer 1o es el primer interrogación, el 2o es alumnoID
+            // (1,1) el primer 1 es la primera interrogación, el 2o es alumnoID
             stmt.setInt(1, alumno.getId());
-            rs = stmt.executeQuery();  // Resultados
+            rs = stmt.executeQuery();  
 
-            // Obtener valores de BD si se encontró el ID
             if (rs.next()) {
                 int activo = rs.getInt("activo");
                 double promedio = rs.getDouble("promedio");
@@ -134,7 +133,6 @@ public class AlumnoDatos implements IAlumnoDatos {
     @Override
     public int insertar(AlumnoEntidad alumno) throws SQLException {
     
-        // Objetos necesarios para BD
         Connection conn = null;
         PreparedStatement stmt = null;
         int filasAfectadas = 0;
@@ -142,7 +140,7 @@ public class AlumnoDatos implements IAlumnoDatos {
         try {
             conn = Conexion.getConnection();
             
-            stmt = conn.prepareStatement(SQLINSERT);     // Sentencia SQL
+            stmt = conn.prepareStatement(SQLINSERT); 
             stmt.setInt(1, alumno.getActivo());
             stmt.setDouble(2, alumno.getPromedio());
             stmt.setString(3, alumno.getNombre());
@@ -152,12 +150,12 @@ public class AlumnoDatos implements IAlumnoDatos {
             stmt.setString(7, alumno.getCorreo());
             stmt.setString(8, alumno.getSexo());
             
-            filasAfectadas = stmt.executeUpdate();  // Registos afectados
+            filasAfectadas = stmt.executeUpdate();  
         }
         catch (SQLException e) {
             e.printStackTrace(System.out);
         }
-        finally {           // los bloques finally siempre se ejecutan
+        finally {           
             stmt.close();
             conn.close();
         }
@@ -167,7 +165,6 @@ public class AlumnoDatos implements IAlumnoDatos {
     @Override
     public int actualizar(AlumnoEntidad alumno) throws SQLException {
         
-        // Objetos necesarios para BD
         Connection conn = null;
         PreparedStatement stmt = null;
         int filasAfectadas = 0;
@@ -175,7 +172,7 @@ public class AlumnoDatos implements IAlumnoDatos {
         try {
             conn = Conexion.getConnection();             
             
-            stmt = conn.prepareStatement(SQLUPDATE);     // Sentencia SQL
+            stmt = conn.prepareStatement(SQLUPDATE);
             stmt.setInt(1, alumno.getActivo());
             stmt.setDouble(2, alumno.getPromedio());
             stmt.setString(3, alumno.getNombre());
@@ -186,12 +183,12 @@ public class AlumnoDatos implements IAlumnoDatos {
             stmt.setString(8, alumno.getSexo());
             stmt.setInt(9, alumno.getId());
             
-            filasAfectadas = stmt.executeUpdate();  // Registos afectados
+            filasAfectadas = stmt.executeUpdate();
         }
         catch (SQLException e) {
             e.printStackTrace(System.out);
         }
-        finally {           // los bloques finally siempre se ejecutan
+        finally {
             stmt.close();
             conn.close();
         }
@@ -201,7 +198,6 @@ public class AlumnoDatos implements IAlumnoDatos {
     @Override
     public int eliminar(AlumnoEntidad alumno) throws SQLException {
                 
-        // Objetos necesarios para BD
         Connection conn = null;
         PreparedStatement stmt = null;
         int filasAfectadas = 0;
@@ -209,15 +205,15 @@ public class AlumnoDatos implements IAlumnoDatos {
         try {
             conn = Conexion.getConnection();             
             
-            stmt = conn.prepareStatement(SQLDELETE);     // Sentencia SQL
+            stmt = conn.prepareStatement(SQLDELETE);     
             stmt.setInt(1, alumno.getId());
             
-            filasAfectadas = stmt.executeUpdate();  // Registos afectados
+            filasAfectadas = stmt.executeUpdate(); 
         }
         catch (SQLException e) {
             e.printStackTrace(System.out);
         }
-        finally {           // los bloques finally siempre se ejecutan
+        finally {        
             stmt.close();
             conn.close();
         }

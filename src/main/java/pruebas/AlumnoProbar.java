@@ -26,12 +26,12 @@ public class AlumnoProbar {
          alumno.seleccionarAlumnno(alumnoDeHTML);
         
         // PROBANDO Buscar por ID
-        /*
+        
          alumnoDeHTML.setId(3);
          alumno.buscarAlumnno(alumnoDeHTML);
-         */
+         
         // INSERT 
-        /*
+        
         alumnoDeHTML.setActivo(1);
         alumnoDeHTML.setCorreo("al061620@uacam.mx");
         alumnoDeHTML.setMaterno("ALDANA");
@@ -42,14 +42,13 @@ public class AlumnoProbar {
         alumnoDeHTML.setSexo("H");
         
         alumno.agregarAlumno(alumnoDeHTML);
-         */
+        
         // DELETE 
-        /*
+       
         alumnoDeHTML.setId(3);
         alumno.eliminarAlumno(alumnoDeHTML);
-         */
+        
         // UPDATE
-        /*
         alumnoDeHTML.setId(4);
         alumnoDeHTML.setActivo(1);
         alumnoDeHTML.setCorreo("al060881@uacam.mx");
@@ -60,6 +59,6 @@ public class AlumnoProbar {
         alumnoDeHTML.setPromedio(8.3);
         alumnoDeHTML.setSexo("H");
         alumno.actualizarAlumno(alumnoDeHTML);
-        */
+        
     }
 }
