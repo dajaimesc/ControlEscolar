@@ -19,15 +19,9 @@ import java.sql.Statement;
 
 public class Conexion {
 
-    // (1) atributos
+    private static Connection conn = null;
+    
     private static final String URL = "jdbc:mysql://localhost:3306/"
-            + "controlescolar?"
-            + "useSSL=false"
-            + "&useTimezone=true"
-            + "&serverTimezone=UTC"
-            + "&allowPublickeyRetrieval=true";
-
-        private static final String URL_PALMARTEC = "jdbc:mysql://palmartec.com:3306/"
             + "controlescolar?"
             + "useSSL=false"
             + "&useTimezone=true"
@@ -37,13 +31,16 @@ public class Conexion {
     private static final String USUARIO = "admince";
     private static final String PASSWORD = "Admince_2103";
 
-    // (2) Método de conexión
-    public static Connection getConnection() throws SQLException{
-        return DriverManager.getConnection(URL, USUARIO, PASSWORD);
-        //return DriverManager.getConnection(URL_PALMARTEC, USUARIO, PASSWORD);
+    public static Connection getConnection() {
+        try {
+            conn =  DriverManager.getConnection(URL, USUARIO, PASSWORD);
+        }
+        catch (SQLException ex) {
+            System.out.println("NO SE PUDO CONECTAR A LA BASE DE DATOS" + ex.getMessage());
+        }
+        return conn;
     }
 
-    // (3) Método para cerrar objetos, sobrecargados.
     public static void close(ResultSet rs) throws SQLException{
         rs.close();
     }

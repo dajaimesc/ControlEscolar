@@ -18,7 +18,7 @@ PROGRAMACION DE APLICACIONES WEB
 
 body{
     line-height: 18px;
-    background: #D3CCE3;
+    background: #fff;
 }
 
 a{
@@ -27,9 +27,9 @@ a{
 }
 
 .btn-menu{
-    display: none;
+    display: block;
     padding: 20px;
-    background: #494949; /* Gris oscuro */
+    background: RGB(41,42,70); /* Gris oscuro */
     color: #fff     
 }
 .btn-menu .icono{
@@ -38,7 +38,7 @@ a{
 .contenedor-menu{
     width: 20%;
     min-width: 300px;
-    margin: 50px;
+    margin: 100px;
     display: inline-block;
     line-height: 18px;
     font-family: 'Open sans', sans-serif;

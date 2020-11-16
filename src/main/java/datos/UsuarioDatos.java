@@ -7,7 +7,6 @@ package datos;
 
 import domain.UsuarioEntidad;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -29,53 +28,35 @@ public class UsuarioDatos implements IUsuarioDatos {
         PreparedStatement stmt = null;
         ResultSet rs = null;
 
-        try {
-            conn = Conexion.getConnection();
-            stmt = conn.prepareStatement(SQLSELECTPORID);
+        conn = Conexion.getConnection();
+        stmt = conn.prepareStatement(SQLSELECTPORID);
 
-            // Sustituimos las incógnitas de la cadena SQLSELECTPORID
-            stmt.setString(1, usuario.getLogin());
-            stmt.setString(2, usuario.getPassword());
-            
-            rs = stmt.executeQuery();
+        // Sustituimos las incógnitas de la cadena SQLSELECTPORID
+        stmt.setString(1, usuario.getLogin());
+        stmt.setString(2, usuario.getPassword());
 
-            if (rs.next()) {
-                int id = rs.getInt("id");
-                String login = rs.getString("login");
-                String password = rs.getString("password");
-                String nombre = rs.getString("nombre");
-                String paterno = rs.getString("paterno");
-                String materno = rs.getString("materno");
-                String sexo = rs.getString("sexo");
-                String correo = rs.getString("correo");
-                String codigo = rs.getString("codigo");
-                int activo = rs.getInt("activo");
-                int perfil = rs.getInt("perfil");
-                Date alta = rs.getDate("alta");
+        rs = stmt.executeQuery();
 
-                //  Usar el objeto alumno del parámetro para devolver valores
-                usuario.setId(id);
-                usuario.setLogin(login);
-                usuario.setPassword(password);
-                usuario.setNombre(nombre);
-                usuario.setPaterno(paterno);
-                usuario.setMaterno(materno);
-                usuario.setSexo(sexo);
-                usuario.setCorreo(correo);
-                usuario.setCodigo(codigo);
-                usuario.setActivo(activo);
-                usuario.setPerfil(perfil);
-                usuario.setAlta(alta);
-            }
+        if (rs.next()) {
+            int id = rs.getInt("id");
+
+            //  Usar el objeto alumno del parámetro para devolver valores
+            usuario.setId(id);
+            usuario.setLogin(rs.getString("login"));
+            usuario.setPassword(rs.getString("password"));
+            usuario.setNombre(rs.getString("nombre"));
+            usuario.setPaterno(rs.getString("paterno"));
+            usuario.setMaterno(rs.getString("materno"));
+            usuario.setSexo(rs.getString("sexo"));
+            usuario.setCorreo(rs.getString("correo"));
+            usuario.setCodigo(rs.getString("codigo"));
+            usuario.setActivo(rs.getInt("activo"));
+            usuario.setPerfil(rs.getInt("perfil"));
+            usuario.setAlta(rs.getDate("alta"));
         }
-        catch (SQLException e) {
-            e.printStackTrace(System.out);
-        }
-        finally {
-            rs.close();
-            stmt.close();
-            conn.close();
-        }
+        rs.close();
+        stmt.close();
+        conn.close();
         return usuario;
     }
 }

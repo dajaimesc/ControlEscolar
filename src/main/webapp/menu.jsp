@@ -15,12 +15,12 @@
         <script src="https://kit.fontawesome.com/f97f12f562.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="/ControlEscolar/public/css/controlescolar.css" class="rel">
         <link href="https://fonts.googleapis.com/css?family=Be+Vietnam&display=swap" rel="stylesheet">
-        <title>Control Escolar 1.0</title>
+        <title>Control Escolar</title>
     </head>
     <body>
         <!-- Validar sesión -->
         <div class="contenedor-menu">
-            <a href="#" class="btn-menu">Menu</a>
+            <a href="#" class="btn-menu">MENÚ PRINCIPAL</a>
             <ul class="menu">
                 <li>
                     <a href="${pageContext.request.contextPath}/ServletAlumno?accion=listar">
@@ -40,7 +40,7 @@
                     <a href="#">
                         <i class="icono left fas fa-chart-bar"></i>
                         Estadística
-                        <i class="icono right fas fa-angle-down"></i>
+                        <i class="icono right fas fa-angle-right"></i>
                     </a>
                     <ul>
                         <li><a href="#">Indicadores</a></li>
