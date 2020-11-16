@@ -12,9 +12,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <!--script src="/ControlEscolar/public/js/controlescolarajax.js" charset="utf-8"></script -->
+        
         <script src="https://kit.fontawesome.com/f97f12f562.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="/ControlEscolar/public/css/controlescolar.css" class="rel">
         <link href="https://fonts.googleapis.com/css?family=Be+Vietnam&display=swap" rel="stylesheet">
+        
         <title>Control Escolar</title>
     </head>
     <body>
@@ -49,7 +51,10 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="${pageContext.request.contextPath}/ServletUsuario?accion=salir"><i class="icono left fas fa-sign-out-alt"></i>Salir</a>
+                    <a href="${pageContext.request.contextPath}/ServletUsuario?accion=salir">
+                        <i class="icono left fas fa-sign-out-alt"></i>
+                        Salir
+                    </a>
                 </li>
             </ul>
         </div>

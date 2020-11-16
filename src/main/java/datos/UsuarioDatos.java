@@ -38,6 +38,7 @@ public class UsuarioDatos implements IUsuarioDatos {
         rs = stmt.executeQuery();
 
         if (rs.next()) {
+            
             int id = rs.getInt("id");
 
             //  Usar el objeto alumno del parámetro para devolver valores

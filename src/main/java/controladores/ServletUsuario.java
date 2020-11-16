@@ -77,6 +77,7 @@ public class ServletUsuario extends HttpServlet {
         String password = request.getParameter("password");
 
         // Modelo (M)
+        
         UsuarioEntidad usuarioE = new UsuarioEntidad(login, password);
         IUsuarioDatos usuarioD = new UsuarioDatos();
 

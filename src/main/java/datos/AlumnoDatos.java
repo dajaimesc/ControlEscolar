@@ -58,7 +58,9 @@ public class AlumnoDatos implements IAlumnoDatos {
             while (rs.next()) {                 // Recorremos el RecorSet
                 int id = rs.getInt("id");       
                 int activo = rs.getInt("activo");
+                
                 double promedio = rs.getDouble("promedio");
+                
                 String nombre = rs.getString("nombre");
                 String paterno = rs.getString("paterno");
                 String materno = rs.getString("materno");

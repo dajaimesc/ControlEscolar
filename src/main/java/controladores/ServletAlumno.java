@@ -57,7 +57,6 @@ public class ServletAlumno extends HttpServlet {
             break;
 
             case "listar":
-
                 try {
                 this.listarAlumno(request, response);
             }
@@ -152,6 +151,7 @@ public class ServletAlumno extends HttpServlet {
         double promedioGeneral = estadistica.getMedia();
         double desviacionEstandarGeneral = estadistica.getDesviacionEstandar();
 
+        
         // Compartir las variables con el JSP en el alcance de session
         HttpSession sesion = request.getSession();
 
@@ -184,11 +184,12 @@ public class ServletAlumno extends HttpServlet {
         int activo = parseInt(request.getParameter("activo"));
         alumnoForm.setActivo(activo);
 
-        // Agregamos el registro a la Base de Datos
+        // Modelo (DAO)
         IAlumnoDatos alumnoD = new AlumnoDatos();
+        
         int rows = alumnoD.insertar(alumnoForm);
 
-        // Actualizamos alumnos en el JSP
+        // Actualizamos alumnos en el JSP (*)
         this.listarAlumno(request, response);
 
         return rows;
@@ -222,6 +223,8 @@ public class ServletAlumno extends HttpServlet {
 
         // Actualizar el registro a la Base de Datos
         IAlumnoDatos alumnoD = new AlumnoDatos();
+        
+        // Acción
         int rows = alumnoD.actualizar(alumnoForm);
 
         // Actualizamos alumnos en el JSP
@@ -245,6 +248,8 @@ public class ServletAlumno extends HttpServlet {
 
         // Agregamos el registro a la Base de Datos
         IAlumnoDatos alumnoD = new AlumnoDatos();
+        
+        // Acción
         int rows = alumnoD.eliminar(alumnoForm);
 
         // Actualizamos alumnos en el JSP

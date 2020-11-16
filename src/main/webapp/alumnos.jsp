@@ -22,8 +22,8 @@
     <body>
         <!-- Encabezado -->
         <jsp:include page="/WEB-INF/privado/comunes/encabezadoPagina.jsp" />
-
-        <!<!-- Barra de navegación -->
+        
+        <!-- Barra de navegación -->
         <jsp:include page="/WEB-INF/privado/comunes/navbarPagina.jsp" />
 
         <!<!-- Listado de alumnos -->
